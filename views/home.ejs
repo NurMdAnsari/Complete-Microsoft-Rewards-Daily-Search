@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Multiple Urls</title>
+    <style>
+        body,html{
+            text-align: center;
+      
+        }
+
+
+.microsoft {
+    background-color: #f25022;
+    box-shadow: 
+        45px 0 0 0 #7fba00, 
+        0 45px 0 0 #00a4ef, 
+        45px 45px 0 0 #ffb900;
+    height: 40px;
+    width: 40px;
+    display:inline-block;
+    position:absolute;
+    z-index:1;
+    left:9em;
+    opacity:0.6
+}
+h2{
+  position:relative;
+  top:0.5em;
+  z-index:3; 
+  padding:0 0.2em;
+
+}
+.head{
+  margin-bottom:5em;
+}
+.s2{
+  font-size: small;
+}
+@media screen and (min-width: 768px) {
+ .microsoft{
+  left:14em;
+ }
+ .s2{
+  font-size:1em;
+}
+}
+input[type="number"]:invalid {
+  border: 1px solid red;
+  color:red;
+}
+
+
+
+
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body class='container mt-4'>
+ 
+<div class='head'>
+  <span class="microsoft"></span> 
+<h2>Complete Microsoft Rewards - Daily Search</h2>
+
+</div>
+<div class='main gx-1 gx-lg-0 mb-4 row justify-content-center align-items-center'>
+<lable class="col-4 col-lg-2 me-2 me-lg-0 col-form-label ">Search Number : </lable>
+<div class="col-3 col-lg-2">
+<input class="form-control text-center" type="number" name='number' id='number' value='20' min="1" max="100" pattern="\d{1,3}">
+</div>
+<div class="col-3 col-lg-2 d-flex flex-column flex-md-row justify-content-center align-items-center ">
+  <span class="d-block me-md-2 s2 d-flex justify-content-center align-items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-americas me-1" viewBox="0 0 16 16">
+    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
+  </svg>
+ <% if(country_code == 'GB'){ %>
+UK 
+  <%  }else{ %>
+<%= country_code %>
+    <% } %>
+</span>
+  <span class="d-block s2 d-flex justify-content-center align-items-center">
+
+<% if(isMobile){ %>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-android2 me-1" viewBox="0 0 16 16">
+    <path d="m10.213 1.471.691-1.26c.046-.083.03-.147-.048-.192-.085-.038-.15-.019-.195.058l-.7 1.27A4.832 4.832 0 0 0 8.005.941c-.688 0-1.34.135-1.956.404l-.7-1.27C5.303 0 5.239-.018 5.154.02c-.078.046-.094.11-.049.193l.691 1.259a4.25 4.25 0 0 0-1.673 1.476A3.697 3.697 0 0 0 3.5 5.02h9c0-.75-.208-1.44-.623-2.072a4.266 4.266 0 0 0-1.664-1.476ZM6.22 3.303a.367.367 0 0 1-.267.11.35.35 0 0 1-.263-.11.366.366 0 0 1-.107-.264.37.37 0 0 1 .107-.265.351.351 0 0 1 .263-.11c.103 0 .193.037.267.11a.36.36 0 0 1 .112.265.36.36 0 0 1-.112.264Zm4.101 0a.351.351 0 0 1-.262.11.366.366 0 0 1-.268-.11.358.358 0 0 1-.112-.264c0-.103.037-.191.112-.265a.367.367 0 0 1 .268-.11c.104 0 .19.037.262.11a.367.367 0 0 1 .107.265c0 .102-.035.19-.107.264ZM3.5 11.77c0 .294.104.544.311.75.208.204.46.307.76.307h.758l.01 2.182c0 .276.097.51.292.703a.961.961 0 0 0 .7.288.973.973 0 0 0 .71-.288.95.95 0 0 0 .292-.703v-2.182h1.343v2.182c0 .276.097.51.292.703a.972.972 0 0 0 .71.288.973.973 0 0 0 .71-.288.95.95 0 0 0 .292-.703v-2.182h.76c.291 0 .54-.103.749-.308.207-.205.311-.455.311-.75V5.365h-9v6.404Zm10.495-6.587a.983.983 0 0 0-.702.278.91.91 0 0 0-.293.685v4.063c0 .271.098.501.293.69a.97.97 0 0 0 .702.284c.28 0 .517-.095.712-.284a.924.924 0 0 0 .293-.69V6.146a.91.91 0 0 0-.293-.685.995.995 0 0 0-.712-.278Zm-12.702.283a.985.985 0 0 1 .712-.283c.273 0 .507.094.702.283a.913.913 0 0 1 .293.68v4.063a.932.932 0 0 1-.288.69.97.97 0 0 1-.707.284.986.986 0 0 1-.712-.284.924.924 0 0 1-.293-.69V6.146c0-.264.098-.491.293-.68Z"/>
+  </svg>
+Android
+<% }else{ %>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop-fill me-1" viewBox="0 0 16 16">
+    <path d="M2.5 2A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+  </svg>
+  PC
+  <% } %>
+</span>
+</div>
+
+</div>
+<button onclick="multipleSearch()" class='btn btn-info px-4 text-white'>Start</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Search Done</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Task Executed Successfully!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
+<button id="bt2" type="button"  class="visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+</button>
+
+    <script>
+let count = 0;
+let country_code = `<%=country_code%>`
+let isMobile = <%= isMobile %>;
+let searchValue;
+if(country_code=='US'){
+if(isMobile){
+searchValue=100/5+10;
+}else{
+searchValue=150/5+10;
+}
+}else if(country_code=='GB'){
+if  (isMobile){
+    searchValue=60/3+9;
+}else{
+  searchValue=90/3+9;
+}
+}else{
+  if(isMobile){
+    searchValue=60/3+7;
+}else{
+  searchValue=90/3+7;
+}
+}
+  let bt2 = document.querySelector('#bt2');  
+
+  let number = document.querySelector('#number');
+number.value= searchValue;
+function reset(){
+  number.value=searchValue;
+}
+async function multipleSearch(){
+
+   if(number.value<1 || number.value>100){
+    alert('Search Value should be between 1 to 100');
+    return;
+   }
+   
+   let length = parseInt(number.value);
+
+   let array;
+   let err;
+await fetch(`word?number=${length}`)
+.then((response)=>{if(response.ok){
+  return response.json()}
+  else{
+    throw new Error('Something went wrong');
+  }})
+  .then((data) => array = data)
+  .catch((error) => {
+    console.log(error);
+    err = true;
+  });
+
+  if(err){
+    let body = document.querySelector('body');
+  body.insertAdjacentHTML( 'beforeend',`<div class="alert alert-warning alert-dismissible fade show mt-5 err1" role="alert">
+  <strong>Error!</strong> Something Went wrong.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>`);
+    return;
+    
+  }
+
+    for (let i = 0; i <array.length; i++) {
+        setTimeout(() => {
+         let tab= window.open(`https://www.bing.com/search?q=${array[i]}&setmkt=en-US&PC=EMMX01&form=LBT003&scope=web`, "_blank");
+       setTimeout(()=>{
+          tab.close();
+       },5000)
+        }, i * 1000);
+      }
+    bt2.click();
+    if(count>=2){
+number.value=5
+    }else{
+      number.value=10;
+    }
+      count++;
+}
+
+    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
