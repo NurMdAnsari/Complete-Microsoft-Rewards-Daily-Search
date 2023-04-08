@@ -23,7 +23,7 @@
     display:inline-block;
     position:absolute;
     z-index:1;
-    left:9em;
+    left:40%;
     opacity:0.6
 }
 h2{
@@ -39,7 +39,52 @@ h2{
 .s2{
   font-size: small;
 }
+.bt1{
+  display: inline-block;
+  margin-left: 1em;
+}
+.eta{
+  position:absolute;bottom:0em;left:1em;font-size:0.8em;
+}
+.micro1{
+
+ opacity:0.8;
+ margin-top: 5em;
+}
+.mrs1{
+  margin-right:3em;
+
+}
+.infosearch{
+  position:absolute;bottom:0em;right:1em;
+}
+#loading-icon {
+    width: 26px;
+    cursor: pointer;
+    
+}
+.footerp1{
+position:fixed;left:8%;bottom:1em;
+}
+.footerp2{
+  position:fixed;left:3%;bottom:1em;
+}
+#my-div{
+    font-size: 0.8em;
+}
 @media screen and (min-width: 768px) {
+  .micro1{
+
+margin-top: 5em;
+text-align: right;
+}
+  .eta{
+  position:absolute;bottom:0em;left:8em;font-size:0.8em;
+}
+  .bt1{
+  margin-left: -0.5em;
+}
+
  .microsoft{
   left:14em;
  }
@@ -47,32 +92,152 @@ h2{
   font-size:1em;
 }
 }
+@media screen and (min-width: 768px) and (max-width: 1280px)  {
+  #my-div{
+    font-size:1.5em !important;
+}
+  .bt1{
+  margin-left: 0.3em;
+  font-size: 2em !important;
+width:4em;
+
+}
+.infosearch{
+  position:absolute;bottom:0em;right:3em;
+  transform: scale(1.6);
+}
+.container { padding:0em} 
+.micro1{
+
+margin-top: 5em;
+text-align: left;
+}
+.eta{
+  font-size: 1em;
+  position:absolute;bottom:0em;left:5em;
+}
+.msw1{
+ 
+  font-size:1.2em !important;
+  padding:0.3em 0.9em !important;
+  margin-top:5em;
+}
+.microsoft {
+    background-color: #f25022;
+    box-shadow: 
+        80px 0 0 0 #7fba00, 
+        0 80px 0 0 #00a4ef, 
+        80px 80px 0 0 #ffb900;
+    height: 70px;
+    width: 70px;
+    display:inline-block;
+    position:absolute;
+    z-index:1;
+    left:40%;
+    top:2.8em;
+    opacity:0.6;
+}
+.head1{
+  font-size: 3em;
+  margin:0 0.9em;
+  margin-bottom:2.2em;
+}
+.head{
+  margin-bottom:5em;
+}
+.s2{
+  font-size: small;
+}
+#container1{
+  min-width: 100%;
+  font-size:19px;
+}
+#subhead1{
+ font-size: 1.5em;
+}
+#number{
+  font-size: 2em;
+  
+
+}
+.subhead3{
+  font-size: 1.6em;
+  margin-left:0.5em;
+}
+.subhead3 svg{
+  transform: scale(1.8);
+  margin-right:0.5em !important;
+  
+}
+#loading-icon {
+    width: 50px;
+    cursor: pointer;
+    
+}
+}
+
 input[type="number"]:invalid {
   border: 1px solid red;
   color:red;
 }
 
+.sp1{
+  font-weight: bolder;
+}
+
+
+#rect0 {
+    fill: #E44A2F;
+}
+
+#rect1 {
+    fill: #7AAC2C;
+}
+
+#rect2 {
+    fill: #EFAC30;
+}
+#rect3 {
+    fill: #159CDF;
+}
+
+
+.animate {
+  animation: fade 2s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 
 
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body class='container mt-4'>
+<body class='container mt-4' id="container1">
  
 <div class='head'>
   <span class="microsoft"></span> 
-<h2>Complete Microsoft Rewards - Daily Search</h2>
+<h2 class="head1">Complete Microsoft Rewards - Daily Search</h2>
 
 </div>
-<div class='main gx-1 gx-lg-0 mb-4 row justify-content-center align-items-center'>
-<lable class="col-4 col-lg-2 me-2 me-lg-0 col-form-label ">Search Number : </lable>
-<div class="col-3 col-lg-2">
+<div class='main gx-1 gx-lg-0 mb-4 mb-md-5 mb-lg-4 row justify-content-center align-items-center'>
+<lable class="col-4 col-md-3 col-lg-2 me-2 me-lg-0 col-form-label " id="subhead1">Search Number : </lable>
+<div class="col-4 col-lg-2">
+ 
 <input class="form-control text-center" type="number" name='number' id='number' value='20' min="1" max="100" pattern="\d{1,3}">
+
 </div>
-<div class="col-3 col-lg-2 d-flex flex-column flex-md-row justify-content-center align-items-center ">
-  <span class="d-block me-md-2 s2 d-flex justify-content-center align-items-center">
+<div class="col-3 col-lg-2 d-flex flex-column flex-md-row justify-content-center align-items-center " >
+  <span class="d-block me-md-2 s2 d-flex justify-content-center align-items-center subhead3" >
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-americas me-1" viewBox="0 0 16 16">
     <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z"/>
   </svg>
@@ -82,7 +247,7 @@ UK
 <%= country_code %>
     <% } %>
 </span>
-  <span class="d-block s2 d-flex justify-content-center align-items-center">
+  <span class="d-block s2 d-flex justify-content-center align-items-center subhead3">
 
 <% if(isMobile){ %>
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-android2 me-1" viewBox="0 0 16 16">
@@ -99,7 +264,32 @@ Android
 </div>
 
 </div>
-<button onclick="multipleSearch()" class='btn btn-info px-4 text-white'>Start</button>
+<span></span>
+<div style="position:relative">
+<button onclick="multipleSearch()"  class='btn btn-info px-4 text-white mt-2  bt1'>Start</button>
+<span  class="eta"></span>
+<span  class="text-muted infosearch"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+</svg></span>
+</div>
+
+
+<div id="container " class="container micro1">
+  <a href="https://rewards.bing.com" class="btn btn-secondary msw1">Go To<b> Microsoft | Rewards</b>
+  <?xml version="1.0" encoding="utf-8"?>
+  <!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+  <svg version="1.1" id="loading-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+       y="0px" viewBox="922 -1145 736 736" style="enable-background:new 922 -1145 736 736;" xml:space="preserve">
+  <rect id="rect0" x="1059.3" y="-1007.7" width="174" height="174"/>
+  <rect id="rect1" x="1346.7" y="-1007.7" width="174" height="174"/>
+  <rect id="rect2" x="1346.7" y="-720.3" width="174" height="174"/>
+  <rect id="rect3" x="1059.3" y="-720.3" width="174" height="174"/>
+  </svg>
+  </a>
+  </div>
+       
+  <div id="my-div"></div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -123,7 +313,33 @@ Android
 
 </button>
 
+<!-- Button trigger modal -->
+<button id="bt3" class="visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h1 class="modal-title fs-5" id="exampleModalLabel fs-bolder ">Search Number Calculate</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    
+      <div style="margin: 0 auto;" class="modal-body">
+        <h6 class="text-muted" style="text-align:left;"><span class="sp1">Default Search number</span> is calculated on basis of <span class="sp1">Country</span> and<span class="sp1"> Device Type</span>  and additional search needed for <span class="sp1">edge bonus</span> as well as 3-5 extra search due to Network Drop could occure! e.g US Android 100 max points / device by 5 points per search = 20 searches + 5 search(edge bonus)+5 ( extra due to network drop).
+          <h6>
+          
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <script>
+     
+
 let count = 0;
 let country_code = `<%=country_code%>`
 let isMobile = <%= isMobile %>;
@@ -147,13 +363,87 @@ if  (isMobile){
   searchValue=90/3+7;
 }
 }
-  let bt2 = document.querySelector('#bt2');  
+const target = document.querySelector('#my-div');
 
+// Define the callback function
+const callback = function(mutationsList, observer) {
+  for (let mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      // An element has been added or removed
+      target.classList.add('animate');
+      setTimeout(() => {
+        target.classList.remove('animate');
+      }, 1000); // Remove animation after 1 second
+    }
+  }
+};
+
+// Create a new observer and attach it to the target div
+const observer = new MutationObserver(callback);
+observer.observe(target, { childList: true });
+
+function delayfooter(){
+  let span1 = document.createElement('span');
+let span2 = document.createElement('span');
+let activeSpan = span1;
+
+span1.textContent = "*US And UK Search Points Reset at Daily 1:30pm IST";
+span1.classList.add('text-muted');
+target.appendChild(span1);
+target.classList.add('footerp1');
+
+setInterval(() => {
+  if (activeSpan === span1) {
+    target.removeChild(span1);
+    span2.textContent = "*Daily check in on rewards.bing.com(Microsoft Rewards Site) for extra points by Task/Punch Cards.";
+    span2.classList.add('text-muted');
+    target.appendChild(span2);
+    target.classList.add('footerp2');
+    if(isMobile){
+      target.style.right ="2em"
+    }
+    if(target.classList.contains('footerp1')){
+      target.classList.remove('footerp1');
+    }
+    activeSpan = span2;
+  } else {
+    target.removeChild(span2);
+    span1.textContent = "*US And UK Search Points Reset at Daily 1:30pm IST";
+    span1.classList.add('text-muted');
+    target.appendChild(span1);
+    target.classList.add('footerp1');
+    
+      target.style.right ="none"
+   
+    if(target.classList.contains('footerp2')){
+      target.classList.remove('footerp2');
+    }
+    activeSpan = span1;
+  }
+}, 6000);
+}
+
+setTimeout(delayfooter,8000);
+
+  let bt2 = document.querySelector('#bt2');  
   let number = document.querySelector('#number');
 number.value= searchValue;
+let eta = document.querySelector('.eta');
+eta.textContent = `ETA:${searchValue+5} Sec`;
 function reset(){
   number.value=searchValue;
 }
+number.addEventListener('input',(e)=>{
+  let num1 = parseInt(number.value);
+  let eta = document.querySelector('.eta');
+ 
+if(num1==0||num1>101||isNaN(num1)){
+  eta.textContent = `ETA: _`;
+  return;
+}
+  
+eta.textContent = `ETA:${num1+5} Sec`;
+})
 async function multipleSearch(){
 
    if(number.value<1 || number.value>100){
@@ -196,13 +486,63 @@ await fetch(`word?number=${length}`)
         }, i * 1000);
       }
     bt2.click();
-    if(count>=2){
+    setTimeout(()=>{
+      if(count>=2){
 number.value=5
     }else{
       number.value=10;
     }
+    },5000)
+   
       count++;
 }
+let bt3 = document.querySelector('#bt3');
+let infosearch = document.querySelector('.infosearch');
+infosearch.addEventListener('click',()=>{ 
+bt3.click();
+})
+
+
+
+var loadingIcon = $('#loading-icon');
+var puzzleContainer = $('#container');
+var piece = $('#loading-icon rect');
+var speed1 = 0.5;
+var speed2 = 0.7;
+
+
+var tl = new TimelineMax({
+    
+    onComplete: function() {
+        this.invalidate();
+        this.restart();
+    }
+    
+});
+
+
+tl
+    .staggerTo(piece, speed1, {
+            scale: 0.7,
+            transformOrigin: "50% 50%",
+            ease: Bounce.easeOut
+        }, 0.04) 
+
+    .to(loadingIcon, speed2, {
+            rotation: "+=90",
+            ease: Circ.easeInOut,
+        })
+
+    .to(piece, speed1, {
+            scale: 1.45,
+            ease: Circ.easeInOut,
+            rotation: "+=90",
+        })
+
+    .to(loadingIcon, speed2, {
+            rotation: "+=90",
+            ease: Circ.easeInOut,
+        })
 
     </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

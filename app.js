@@ -4,11 +4,11 @@ const mongoose =require('mongoose');
 const axios = require('axios');
 const useragent = require('express-useragent')
 const data = require('./public/all.json');
+require('dotenv').config();
 
-//mongodb+srv://nurmd:nur123@cluster0.oexanhi.mongodb.net/?retryWrites=true&w=majority
 
 mongoose.set("strictQuery",false);
-mongoose.connect('mongodb://127.0.0.1:27017',{dbName:'msr'})
+mongoose.connect(process.env.MONGO_URI,{dbName:'msr'})
 .then(()=>{console.log('connected to db')})
 .catch((err)=>{console.log('err')});
 
@@ -19,7 +19,10 @@ country_code:String,
 region:String,
 city:String,
 current_time:String,
-time:{type:Date,default:Date.now()}
+ind_time:String,
+time:{type:Date,default:Date.now()
+
+}
 })
 
 let Ipad = mongoose.model('ip',msip);
@@ -42,11 +45,18 @@ if(req.ip.length>=6 && !(req.ip.includes('192.168'))){
 }
 
 try{
+  let random = Math.floor(Math.random()*3);
+let api = [
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY1}&ip_address=`,
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY2}&ip_address=`,
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY3}&ip_address=`
+]
 
- let ipinfo = await axios.get(`https://ipgeolocation.abstractapi.com/v1/?api_key=9d1d3a341770466e8556b777b9e97d53&ip_address=${ip}`);
+ let ipinfo = await axios.get(`${api[random]}${ip}`);
 
 if(ipinfo.data.hasOwnProperty('error')){
   res.render('home',{country_code:'unavailable',isMobile:isMobile});
+  console.log(ipinfo.data.error);
   throw new Error('ipinfo error');
 }
  // ipinfo data varibales
@@ -57,6 +67,21 @@ if(ipinfo.data.hasOwnProperty('error')){
  let current_time = ipinfo.data.timezone.current_time;
  res.render('home',{country_code:country_code,isMobile:isMobile});
  try{
+
+let date = new Date();
+
+const options = {
+  timeZone: "Asia/Kolkata",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+};
+
+const istTime = date.toLocaleString("en-IN", options);
+
   // save data to db
      let info= new Ipad({
       ip:req.ip,
@@ -64,7 +89,8 @@ if(ipinfo.data.hasOwnProperty('error')){
       country_code:country_code,
       region:region,
       city:city,
-      current_time:current_time
+      current_time:current_time,
+      ind_time:istTime,
   });
   
   info.save().catch((err)=>{console.log(err)});
@@ -76,7 +102,8 @@ if(ipinfo.data.hasOwnProperty('error')){
   
 }catch(err){
   res.render('home',{country_code:'Error',isMobile:isMobile});
-// console.log(err);
+console.log(err);
+
 return;
 }
 
