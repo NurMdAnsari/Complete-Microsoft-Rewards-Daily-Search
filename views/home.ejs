@@ -287,7 +287,10 @@ Android
   </svg>
   </a>
   </div>
-       
+
+  <!-- <div class="alert alert-info mt-5 mx-1 mx-lg-5" role="alert">
+    This Website is temporary moving to<a href="test.com" class="alert-link"> website.com/microsoftrewards</a>. start using it now!
+  </div> -->
   <div id="my-div"></div>
 
 <!-- Modal -->
@@ -308,6 +311,35 @@ Android
     </div>
   </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Search Failed!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      Please Enable/Allow Pop-ups from top of the page and try again! 
+       Pop-ups permission is required to execute search task.
+      </div>
+    <% if(isMobile){ %>
+
+<a href="https://youtube.com/shorts/dRAnd4bhNoM?feature=share">Click Here to watch video on how to enable/allow Pop-ups</a>
+      <% }else{ %>
+<a href="https://youtu.be/-Qh1nXSgfYg">Click Here to watch video on how to enable/allow Pop-ups</a>
+
+      <% } %>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<button id="bt4" type="button"  class="visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+
+</button>
 <!-- Button trigger modal -->
 <button id="bt2" type="button"  class="visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
@@ -330,8 +362,10 @@ Android
       <div style="margin: 0 auto;" class="modal-body">
         <h6 class="text-muted" style="text-align:left;"><span class="sp1">Default Search number</span> is calculated on basis of <span class="sp1">Country</span> and<span class="sp1"> Device Type</span>  and additional search needed for <span class="sp1">edge bonus</span> as well as 3-5 extra search due to Network Drop could occure! e.g US Android 100 max points / device by 5 points per search = 20 searches + 5 search(edge bonus)+5 ( extra due to network drop).
           <h6>
-          
+          <h7 class="text-muted"  ><span class="sp1">You just need to do start once to complete daily search per device/country!</span></h7>
+        <div class="mt-3">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
       </div>
     </div>
   </div>
@@ -426,6 +460,7 @@ setInterval(() => {
 setTimeout(delayfooter,8000);
 
   let bt2 = document.querySelector('#bt2');  
+  let bt4 = document.querySelector('#bt4');  
   let number = document.querySelector('#number');
 number.value= searchValue;
 let eta = document.querySelector('.eta');
@@ -476,16 +511,36 @@ await fetch(`word?number=${length}`)
     return;
     
   }
-
+let dcount = 1;
+let isfailed = false;
     for (let i = 0; i <array.length; i++) {
         setTimeout(() => {
          let tab= window.open(`https://www.bing.com/search?q=${array[i]}&setmkt=en-US&PC=EMMX01&form=LBT003&scope=web`, "_blank");
+         
+if(!tab || tab.closed || typeof tab.closed=='undefined') 
+{ 
+ 
+  if(dcount==1){
+   bt4.click();
+  }
+ isfailed = true;
+   dcount++;
+  }
        setTimeout(()=>{
+        if(!isfailed){
           tab.close();
+        }
+         
        },5000)
         }, i * 1000);
       }
-    bt2.click();
+
+setTimeout(()=>{
+if(!isfailed){
+  bt2.click();
+}
+},array.length*1000+2000)
+ 
     setTimeout(()=>{
       if(count>=2){
 number.value=5
