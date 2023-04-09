@@ -27,9 +27,10 @@ time:{type:Date,default:Date.now()
 
 let Ipad = mongoose.model('ip',msip);
 
+app.use(express.static('public'))
 app.set('view engine','ejs');
 app.set('trust proxy', true);
-app.use(express.static('public'));
+
 
 app.get('/',async(req,res)=>{
   let source = req.headers['user-agent']
