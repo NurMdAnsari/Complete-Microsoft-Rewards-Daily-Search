@@ -28,28 +28,16 @@ time:{type:Date,default:Date.now()
 
 let Ipad = mongoose.model('ip',msip);
 
-app.use(express.static('public', { maxAge: '1d' }));
-
+app.use(express.static('public'))
 app.set('view engine','ejs');
 app.set('trust proxy', true);
 
 
 app.get('/',async(req,res)=>{
-let domain1 = req.headers['x-forwarded-host'] || req.headers.host;
- res.set('Content-Type', 'text/html');  
-let source = req.headers['user-agent']
-let ua,isMobile;
-try{
-  ua = useragent.parse(source);
-  isMobile = ua.isMobile;
-if(isMobile==undefined){
-throw new Error("oops");
-}
-}catch(e){
-console.log(e); 
-  isMobile = false;;
+  let source = req.headers['user-agent']
+  let ua = useragent.parse(source);
+  let isMobile = ua.isMobile;
 
-}
 // get ip info
 let ip;
 if(req.ip.length>=6 && !(req.ip.includes('192.168'))){
@@ -79,7 +67,7 @@ if(ipinfo.data.hasOwnProperty('error')){
  let region = ipinfo.data.region;
  let city = ipinfo.data.city;
  let current_time = ipinfo.data.timezone.current_time;
- res.render('home',{country_code:country_code,isMobile:isMobile,domain:domain1});
+ res.render('home',{country_code:country_code,isMobile:isMobile});
  try{
 
 let date = new Date();
@@ -115,7 +103,7 @@ const istTime = date.toLocaleString("en-IN", options);
 //main homepage
   
 }catch(err){
-  res.render('home',{country_code:'Error',isMobile:isMobile,domain:domain1});
+  res.render('home',{country_code:'Error',isMobile:isMobile});
 console.log(err);
 
 return;
