@@ -459,7 +459,7 @@ function delayfooter(){
 let span2 = document.createElement('span');
 let activeSpan = span1;
 
-span1.textContent = "*US And UK Search Points Reset at Daily 1:30pm IST";
+span1.textContent = " ";
 span1.classList.add('text-muted');
 target.appendChild(span1);
 target.classList.add('footerp1');
@@ -480,7 +480,7 @@ setInterval(() => {
     activeSpan = span2;
   } else {
     target.removeChild(span2);
-    span1.textContent = "*US And UK Search Points Reset at Daily 1:30pm IST";
+    span1.textContent = " ";
     span1.classList.add('text-muted');
     target.appendChild(span1);
     target.classList.add('footerp1');
@@ -502,7 +502,7 @@ setTimeout(delayfooter,8000);
   let number = document.querySelector('#number');
 number.value= searchValue;
 let eta = document.querySelector('.eta');
-eta.textContent = `ETA:${searchValue+5} Sec`;
+eta.textContent = `ETA:${searchValue+(searchValue/2)+5} Sec`;
 function reset(){
   number.value=searchValue;
 }
@@ -515,7 +515,7 @@ if(num1==0||num1>101||isNaN(num1)){
   return;
 }
   
-eta.textContent = `ETA:${num1+5} Sec`;
+eta.textContent = `ETA:${num1+(num1/2)+5} Sec`;
 })
 async function multipleSearch(){
 
@@ -570,20 +570,22 @@ if(!tab || tab.closed || typeof tab.closed=='undefined')
         }
          
        },5000)
-        }, i * 1000);
+        }, i * 1500);
       }
 
 setTimeout(()=>{
 if(!isfailed){
   bt2.click();
 }
-},array.length*1000+2000)
+},array.length*1500+2000)
  
     setTimeout(()=>{
       if(count>=2){
-number.value=5
+number.value=5;
+eta.textContent = `ETA:${5+(5/2)+5} Sec`;
     }else{
       number.value=10;
+      eta.textContent = `ETA:${10+(10/2)+5} Sec`;
     }
     },5000)
    
