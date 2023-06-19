@@ -4,6 +4,7 @@ const mongoose =require('mongoose');
 const axios = require('axios');
 const useragent = require('express-useragent')
 const data = require('./public/all.json');
+const fs = require('fs');
 require('dotenv').config();
 
 app.disable('x-powered-by');
@@ -35,7 +36,7 @@ app.set('trust proxy', true);
 
 
 app.get('/',async(req,res)=>{
-let domain1 = req.headers['x-forwarded-host'] || req.headers.host;
+
  res.set('Content-Type', 'text/html');  
 let source = req.headers['user-agent']
 let ua,isMobile;
@@ -59,13 +60,15 @@ if(req.ip.length>=6 && !(req.ip.includes('192.168'))){
 }
 
 try{
-  let random = Math.floor(Math.random()*3);
-let api = [
-`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY1}&ip_address=`,
-`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY2}&ip_address=`,
-`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY3}&ip_address=`
-]
-
+  
+// let api = [
+// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY1}&ip_address=`,
+// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY2}&ip_address=`,
+// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY3}&ip_address=`,
+// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY4}&ip_address=`,
+// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY5}&ip_address=`
+// ]
+let random = Math.floor(Math.random()*api.length);
  let ipinfo = await axios.get(`${api[random]}${ip}`);
 
 if(ipinfo.data.hasOwnProperty('error')){
@@ -74,40 +77,48 @@ if(ipinfo.data.hasOwnProperty('error')){
   throw new Error('ipinfo error');
 }
  // ipinfo data varibales
- let country = ipinfo.data.country;
+ 
  let country_code = ipinfo.data.country_code;
- let region = ipinfo.data.region;
- let city = ipinfo.data.city;
- let current_time = ipinfo.data.timezone.current_time;
- res.render('home',{country_code:country_code,isMobile:isMobile,domain:domain1});
+ res.render('home',{country_code:country_code,isMobile:isMobile});
  try{
+// count total views and last view time
+  let date = new Date();
 
-let date = new Date();
-
-const options = {
-  timeZone: "Asia/Kolkata",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-};
-
-const istTime = date.toLocaleString("en-IN", options);
-
-  // save data to db
-     let info= new Ipad({
-      ip:req.ip,
-      country:country,
-      country_code:country_code,
-      region:region,
-      city:city,
-      current_time:current_time,
-      ind_time:istTime,
-  });
+  const options = {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
   
-  info.save().catch((err)=>{console.log(err)});
+  const istTime = date.toLocaleString("en-IN", options);
+  
+  
+  fs.readFile('views.json', 'utf-8', (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return;
+    }
+  
+    // Parse JSON data
+    const jsonData = JSON.parse(data);
+  
+    // Modify the data
+let views1 = jsonData.views +1 ;
+let lastview = istTime;
+    // Write JSON data back to the file
+    fs.writeFile('views.json', JSON.stringify({views:views1,last_viewed:lastview}, null, 2), 'utf-8', (err) => {
+      if (err) {
+        console.error('Error writing file:', err);
+        return;
+      }
+    });
+  });
+
+
   }catch(err){
     console.log(err);
     return;
@@ -115,7 +126,7 @@ const istTime = date.toLocaleString("en-IN", options);
 //main homepage
   
 }catch(err){
-  res.render('home',{country_code:'Error',isMobile:isMobile,domain:domain1});
+  res.render('home',{country_code:'Error',isMobile:isMobile});
 console.log(err);
 
 return;
@@ -148,8 +159,24 @@ app.get('/word',(req,res)=>{
   res.status(500).send('500 Internal Server Error');
 }
 })
-
-app.listen(9005,(err)=>{
+app.get('/views',async(req,res)=>{
+  try{
+await fs.readFile('views.json', 'utf-8', (err, data) => {
+    if (err) {
+      
+      res.status(500).json({error:'500 Internal Server Error'})
+      return;
+    }
+  
+    // Parse JSON data
+    const jsonData = JSON.parse(data);
+    res.status(200).json(jsonData);
+  });
+}catch(err){
+res.status(500).json({error:'500 Internal Server Error'})
+}
+})
+app.listen(9006,(err)=>{
     if(err){
       console.log(err);
       return;
