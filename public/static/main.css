@@ -2,7 +2,9 @@ body,html{
     text-align: center;
 
 }
-
+.head1{
+    opacity:0.9 !important;
+}
 .microsoft {
 background-color: #f25022;
 box-shadow: 
@@ -24,8 +26,10 @@ z-index:3;
 padding:0 0.2em;
 
 }
+
 .head{
 margin-bottom:5em;
+
 }
 .s2{
 font-size: small;
@@ -127,12 +131,15 @@ top:2.8em;
 opacity:0.6;
 }
 .head1{
+    
 font-size: 3em;
 margin:0 0.9em;
 margin-bottom:2.2em;
+
 }
 .head{
 margin-bottom:5em;
+
 }
 .s2{
 font-size: small;
@@ -143,6 +150,7 @@ font-size:19px;
 }
 #subhead1{
 font-size: 1.5em;
+
 }
 #number{
 font-size: 2em;
@@ -203,11 +211,36 @@ to {
 opacity: 1;
 }
 }
-
+.defaultz{
+    position:absolute;top:50%;left:90%;
+ transform: translate(-90%, -53%);
+ z-index:99;
+ cursor: pointer;
+ display: none;
+  }
+  .defaultz svg {
+   fill:#666;
+     stroke: #666;
+     transition: stroke fill 0.3s; /* Smooth transition effect */
+   }
+   
+   .defaultz:hover svg {
+    fill:rgb(70, 158, 185);
+     stroke:rgb(70, 158, 185); /* Stroke color on hover */
+   }
 @media only screen and (min-width: 768px) {
 .zq1{
 transform: scale(0.6)
 }
+.defaultz{
+    position:absolute;top:50%;left:73%;
+ transform: translate(-73%, -55%);
+
+  }
+  .defaultz:active svg {
+    fill:rgb(41, 170, 36);
+     stroke:rgb(41, 170, 36); /* Stroke color on hover */
+   }
 }
 .check{
 display: none;
@@ -223,3 +256,58 @@ display: none;
     border: 0;
   }
  
+
+  .t1{
+    position: absolute;top:4.8em;left:3em;color:green;z-index:5;font-size:1.1em;
+    background-color: #bbbfc4;padding: 3px 5px; border-radius: 5px;
+  }
+   .delaydiv1{
+    text-align: left ;position:relative;top:2em;
+    left:55%; transform: translateX(-55%);
+    max-width: 60%;
+    background-color: #cbd2d8;padding:1em;border-radius: 1em;
+    
+  }
+  .dinfo{
+    display: block;
+  }
+  @media screen and (min-width: 768px) {
+    .delaydiv1{
+    text-align: left ;position:relative;top:1.2em; left:93%; transform: translateX(-93%);
+    max-width: 20%;background-color: #cbd2d8;padding:1em;border-radius: 1em;
+  }
+  .dinfo{
+    display: inline-block;
+  }
+}
+  @media screen and (min-width: 768px) and (max-width: 1280px)  {
+    .delaydiv1{
+    text-align: left ;position:relative;top:1.2em; left:93%; transform: translateX(-93%);
+    max-width: 30%;background-color: #cbd2d8;padding:1em;border-radius: 1em;
+  }
+  body{
+    margin-bottom: 2em;
+  }
+  }
+  .hidden-element {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 0.3s, pointer-events 0.3s;
+
+}
+.visible-element {
+  opacity: 1 !important;
+  pointer-events: auto;
+  transition: opacity 0.3s, pointer-events 0.3s;
+ 
+}
+.delayinfo:hover{
+  fill: rgb(94, 92, 92); /* Change the fill color */
+  stroke: rgb(179, 170, 170); /* Change the stroke color */
+cursor:pointer;
+}
+.delayinfo:active{
+  fill: rgb(94, 92, 92); /* Change the fill color */
+  stroke: rgb(179, 170, 170); /* Change the stroke color */
+cursor:pointer;
+}

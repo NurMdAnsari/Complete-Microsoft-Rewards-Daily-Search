@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" type='text/css' href="menu.css">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans",sans-serif !important;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+
+}
+
+.about-section{
+    background: url(pic.jpg) no-repeat left;
+    background-size: 90%;
+    background-color: #fdfdfd;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.inner-container{
+    width: 60%;
+    float: right;
+    background-color: #fdfdfd;
+    padding: 100px;
+    padding-top: 50px;
+  
+}
+
+.inner-container h1{
+
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.text{
+    font-size: 13px;
+    color: #545454;
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.skills{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+@media screen and (max-width:1200px){
+    .inner-container{
+        padding: 80px;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .about-section{
+        background-size: 100%;
+        padding: 100px 40px;
+    }
+    .inner-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .about-section{
+        padding: 0;
+    }
+    .inner-container{
+        padding: 60px;
+    }
+}
+p {
+        white-space: pre-line;
+    }
+    #toggle {
+  -webkit-appearance: none;
+  
+}
+.open-overlay{
+  position: fixed;
+  bottom:4em;
+  right:1.3em;
+  z-index: 999;
+  
+}
+
+.button {
+
+  z-index: 999;
+  width: 2.5em;
+  height: 2em;
+  padding:1.3em;
+  background: #8974FB;
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+ 
+  .open-overlay{
+
+  bottom:1em;
+  right:1em;
+  opacity: 1;
+  
+}
+.button {
+ 
+
+ width: 1.5em;
+ height: 1.5em;
+ opacity: 1;
+
+}
+}
+
+
+
+.button:before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  transform: rotate(90deg);
+  transition: all 0.4s ease;
+}
+.button:after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.4s ease;
+}
+
+.nav {
+  position: fixed;
+  bottom:50px;
+  right:30px;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  background: #fff;
+  width: 200px;
+  border-radius: 5px;
+  transform: translateX(0%);
+  box-shadow: 2px 3px 10px 0 rgba(81, 81, 81, 0.1);
+  border: 1px solid #e4e4e4;
+  padding: 10px;
+}
+.nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.nav a {
+  text-align: left;
+  margin: 20px 0;
+  color: #8974FB;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  padding-left:20px;
+}
+.nav a:hover {
+  color: #C784DD;
+}
+
+#toggle:checked ~ .nav {
+  opacity: 1;
+  transform: translateY(10%);
+}
+
+#toggle:checked ~ .button:before {
+  transform: rotate(225deg);
+}
+
+#toggle:checked ~ .button:after {
+  transform: rotate(135deg);
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: 100%;
+  }
+}
+
+    </style>
+ 
+</head>
+<body>
+    <div class="about-section">
+        <div class="inner-container">
+          <h1>About Us</h1>
+          <p class="text">
+        
+Welcome to our website! We are dedicated to providing an automated search experience for Microsoft Rewards without any affiliations. Our goal is to simplify and streamline the process of earning rewards through Microsoft's search engine by automating the search queries on your behalf.
+
+At our core, we believe in making the most of your online activities and maximizing the benefits available to you. Microsoft Rewards offers a great opportunity to earn points by simply searching the web, but we understand that it can be time-consuming and repetitive to perform these searches manually. That's where we come in.
+
+Our platform leverages advanced automation techniques to perform searches on your behalf, allowing you to earn Microsoft Rewards points effortlessly. We have developed a reliable and efficient system that delivers accurate search results while adhering to Microsoft's guidelines and policies.
+
+We want to emphasize that we have no affiliations with Microsoft or any other organizations. We are an independent service provider, passionate about assisting users in maximizing their rewards without any bias or vested interests. Our sole focus is to provide a user-friendly and efficient solution for automating Microsoft Rewards searches.
+
+We value your feedback and suggestions, as they help us refine and enhance our services. If you have any questions, concerns, or suggestions, please don't hesitate to contact us. We are here to assist you and ensure that your automated search experience is smooth and rewarding.
+
+Thank you for choosing our platform to automate your Microsoft Rewards searches. We appreciate your trust and look forward to helping you earn rewards effortlessly!
+
+      </p>
+          <div class="skills">
+            <span>Web Design</span>
+            <span>Cross Platform App Developer</span>
+            <span>Coding</span>
+          </div>
+        </div>
+      </div>
+      <div class="overlay-navigation">
+        <nav role="navigation">
+          <ul>
+            <li><a href="/" data-content="The beginning">Home</a></li>
+            <li><a href="/about" data-content="Curious?">About</a></li>
+            <li><a href="/contact" data-content="Don't hesitate">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      
+      
+       
+        <div class="open-overlay">
+          
+          <input type="checkbox" id="toggle"/>
+        <label class="button" for="toggle"></label>
+      
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="menu.js"></script>
+</body>
+</html>

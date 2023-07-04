@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const mongoose =require('mongoose');
 const axios = require('axios');
 const useragent = require('express-useragent')
 const data = require('./public/all.json');
@@ -9,27 +8,10 @@ require('dotenv').config();
 
 app.disable('x-powered-by');
 
-mongoose.set("strictQuery",false);
-mongoose.connect(process.env.MONGO_URI,{dbName:'msr'})
-.then(()=>{console.log('connected to db')})
-.catch((err)=>{console.log('err')});
-
-let msip = new mongoose.Schema({
-ip:String,
-country:String,
-country_code:String,
-region:String,
-city:String,
-current_time:String,
-ind_time:String,
-time:{type:Date,default:Date.now()
-
-}
-})
-
-let Ipad = mongoose.model('ip',msip);
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('public', { maxAge: '1d' }));
+
 
 app.set('view engine','ejs');
 app.set('trust proxy', true);
@@ -61,13 +43,13 @@ if(req.ip.length>=6 && !(req.ip.includes('192.168'))){
 
 try{
   
-// let api = [
-// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY1}&ip_address=`,
-// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY2}&ip_address=`,
-// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY3}&ip_address=`,
-// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY4}&ip_address=`,
-// `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY5}&ip_address=`
-// ]
+let api = [
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY1}&ip_address=`,
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY2}&ip_address=`,
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY3}&ip_address=`,
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY4}&ip_address=`,
+`https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.GEO_API_KEY5}&ip_address=`
+]
 let random = Math.floor(Math.random()*api.length);
  let ipinfo = await axios.get(`${api[random]}${ip}`);
 
@@ -76,8 +58,7 @@ if(ipinfo.data.hasOwnProperty('error')){
   console.log(ipinfo.data.error);
   throw new Error('ipinfo error');
 }
- // ipinfo data varibales
- 
+
  let country_code = ipinfo.data.country_code;
  res.render('home',{country_code:country_code,isMobile:isMobile});
  try{
@@ -107,10 +88,13 @@ if(ipinfo.data.hasOwnProperty('error')){
     const jsonData = JSON.parse(data);
   
     // Modify the data
-let views1 = jsonData.views +1 ;
+    if(jsonData.total_views==null){
+      jsonData.total_views = 0;
+    }
+let views1 = jsonData.total_views +1 ;
 let lastview = istTime;
     // Write JSON data back to the file
-    fs.writeFile('views.json', JSON.stringify({views:views1,last_viewed:lastview}, null, 2), 'utf-8', (err) => {
+    fs.writeFile('views.json', JSON.stringify({total_views:views1,last_viewed:lastview}, null, 2), 'utf-8', (err) => {
       if (err) {
         console.error('Error writing file:', err);
         return;
@@ -176,7 +160,27 @@ await fs.readFile('views.json', 'utf-8', (err, data) => {
 res.status(500).json({error:'500 Internal Server Error'})
 }
 })
-app.listen(9006,(err)=>{
+app.post('/contactus',(req,res)=>{
+ 
+  res.send('OK');
+  // store data 
+})
+app.get('/contact',(req,res)=>{
+  res.render('contactus');
+})
+app.get('/about',(req,res)=>{
+
+res.render('about');
+
+})
+
+app.use((req, res, next) => {
+  res.status(404).render('404');
+});
+
+
+
+app.listen(9001,(err)=>{
     if(err){
       console.log(err);
       return;
